@@ -1,13 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
-using Newtonsoft.Json;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
 using WebApi.DTOs;
 using WebApi.Entities;
 using WebApi.Helpers;
+using WebApi.Services.Interface;
 
-namespace WebApi.Services
+namespace WebApi.Services.Implementation
 {
     public class PlayerService : IPlayerService
     {
@@ -43,7 +40,7 @@ namespace WebApi.Services
                 newPlayer.PlayerSkills.Add(newSkill);
             }
 
-            await Context.AddAsync<Player>(newPlayer);
+            await Context.AddAsync(newPlayer);
             await Context.SaveChangesAsync();
             return newPlayer;
 
@@ -51,7 +48,7 @@ namespace WebApi.Services
 
         public async Task<Player> UpdatePlayer(int playerId, PlayerDTO request)
         {
-            var player = await Context.Players.Where(x => x.Id == playerId).Include(x => x.PlayerSkills).FirstOrDefaultAsync() 
+            var player = await Context.Players.Where(x => x.Id == playerId).Include(x => x.PlayerSkills).FirstOrDefaultAsync()
                 ?? throw new KeyNotFoundException($"Invalid value for player id {playerId}");
 
             player.Position = request.Position;
@@ -93,7 +90,7 @@ namespace WebApi.Services
 
 
         //reusable method for CreatePlayer and UpdatePlayer
-        public PlayerSkill AddSkill(string skill, int value)
+        private PlayerSkill AddSkill(string skill, int value)
         {
             if (!AvailableSkills.Contains(skill.Trim().ToLower())) throw new ArgumentException($"Invalid value for skill: {skill}");
 

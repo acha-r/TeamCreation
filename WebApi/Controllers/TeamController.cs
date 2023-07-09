@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using WebApi.DTOs;
 using WebApi.Entities;
 using WebApi.Helpers;
-using WebApi.Services;
+using WebApi.Services.Interface;
 
 namespace WebApi.Controllers
 {

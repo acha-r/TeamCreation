@@ -1,7 +1,7 @@
 ﻿using WebApi.DTOs;
 using WebApi.Entities;
 
-namespace WebApi.Services
+namespace WebApi.Services.Interface
 {
     public interface IPlayerService
     {

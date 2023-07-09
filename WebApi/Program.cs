@@ -64,6 +64,7 @@ var builder = WebApplication.CreateBuilder(args);
     });
 
     services.AddAuthorization();
+    services.AddHttpContextAccessor();
     services.RegisterServices();
 
 }

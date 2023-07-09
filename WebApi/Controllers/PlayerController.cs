@@ -11,8 +11,9 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using WebApi.DTOs;
 using WebApi.Entities;
+using WebApi.Extensions;
 using WebApi.Helpers;
-using WebApi.Services;
+using WebApi.Services.Interface;
 
 [ApiController]
 [Route("api/[controller]")]
@@ -47,7 +48,7 @@ public class PlayerController : ControllerBase
 
     }
 
-    [Authorize]
+    [TokenRequirement]
     [HttpDelete("{id}")]
     public async Task<ActionResult<Player>> DeletePlayer(int id)
     {

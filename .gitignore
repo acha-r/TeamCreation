@@ -16,3 +16,4 @@ packages/
 
 # SonarQube
 .sonarqube/
+/WebApi/app.settings.json

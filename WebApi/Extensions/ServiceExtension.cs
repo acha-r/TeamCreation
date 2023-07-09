@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authentication;
-using WebApi.Services;
+using WebApi.Services.Implementation;
+using WebApi.Services.Interface;
 
 namespace WebApi.Extensions
 {
