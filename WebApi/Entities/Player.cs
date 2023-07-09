@@ -15,3 +15,4 @@ public class Player
     public string Position { get; set; }
     public List<PlayerSkill> PlayerSkills { get; set; }
 }
+
