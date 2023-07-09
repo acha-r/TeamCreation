@@ -40,29 +40,6 @@ var builder = WebApplication.CreateBuilder(args);
             ValidationAlgorithm = ValidationAlgorithm.HMACSHA256
         });
 
-    services.AddAuthentication(x =>
-    {
-        x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-        x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-
-    }).AddJwtBearer(x =>
-    {
-        x.RequireHttpsMetadata = true;
-        x.SaveToken = true;
-        x.TokenValidationParameters = new TokenValidationParameters
-        {
-            ValidateIssuerSigningKey = true,
-            ValidateAudience = true,
-            ValidateLifetime = true,
-            ValidateIssuer = true,
-
-            ValidIssuer = "https://localhost:3000/api/player",
-            ValidAudience = "https://localhost:3000/api/player",
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("asdf;lkj12qw09po")),
-            ClockSkew = TimeSpan.Zero
-        };
-    });
-
     services.AddAuthorization();
     services.AddHttpContextAccessor();
     services.RegisterServices();

@@ -80,7 +80,7 @@ namespace WebApi.Services.Implementation
 
         public async Task<Player> DeletePlayer(int playerId)
         {
-            var player = await Context.Players.FindAsync(playerId);
+            var player = await Context.Players.FindAsync(playerId) ?? throw new InvalidOperationException($"User with id: {playerId} not found");
 
             Context.Players.Remove(player);
             await Context.SaveChangesAsync();

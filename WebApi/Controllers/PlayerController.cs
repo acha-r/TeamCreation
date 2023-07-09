@@ -53,7 +53,5 @@ public class PlayerController : ControllerBase
     public async Task<ActionResult<Player>> DeletePlayer(int id)
     {
             return Ok(await Player.DeletePlayer(id));
-      
-        //await Task.Run(() => Context.Players.FirstOrDefault(x => x.Id == 4));
     }
 }
